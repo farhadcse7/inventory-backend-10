@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "5fe6ac9f-7d37-4d27-9ef5-8a4727af4c1e",
+		"name": "inventory_inst",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31347245"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SystemSetting",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/system-setting",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"system-setting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "site_name",
+									"value": "Inventory Shop -2",
+									"type": "text"
+								},
+								{
+									"key": "site_logo",
+									"value": "null",
+									"type": "text"
+								},
+								{
+									"key": "site_favicon",
+									"value": "null",
+									"type": "text"
+								},
+								{
+									"key": "site_phone",
+									"value": "12345678901",
+									"type": "text"
+								},
+								{
+									"key": "site_email",
+									"value": "admin@inventory.com",
+									"type": "text"
+								},
+								{
+									"key": "site_facebook_link",
+									"value": "inventory@facebook.com",
+									"type": "text"
+								},
+								{
+									"key": "meta_keywords",
+									"value": "POS, Inventory, Shopping",
+									"type": "text"
+								},
+								{
+									"key": "meta_description",
+									"value": "Its a mult product inventory shop",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/system-setting/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"system-setting",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "2|xmIUN5STVEKjIE7A8gzQ1jG4vZaUsGCdihQkcpj2d3eb2f58",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}
