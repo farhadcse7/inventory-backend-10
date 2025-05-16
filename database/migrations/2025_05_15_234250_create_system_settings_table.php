@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('system_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('site_name');
+            $table->string('site_logo')->nullable();
+            $table->string('site_favicon')->nullable();
+            $table->string('site_phone')->nullable();
+            $table->string('site_email')->nullable();
+            $table->string('site_facebook_link')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

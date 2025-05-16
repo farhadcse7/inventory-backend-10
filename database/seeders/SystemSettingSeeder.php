@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\SystemSetting;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SystemSettingSeeder extends Seeder
 {
@@ -12,6 +13,15 @@ class SystemSettingSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        SystemSetting::create([
+            'site_name' => 'Inventory Shop -1',
+            "site_logo" => null,
+            "site_favicon" => null,
+            'site_phone' => 123456789,
+            'site_email' => 'admin@inventory.com',
+            "site_facebook_link" => 'inventory@facebook.com',
+            "meta_keywords" => 'POS, Inventory, Shopping',
+            "meta_description" => 'Its a mult product inventory shop'
+        ]);
     }
 }
