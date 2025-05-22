@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\SystemSettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\SystemSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/all-categories', [CategoryController::class, 'allCategories']);
     Route::get('/categories/status/{id}', [CategoryController::class, 'status']);
     Route::apiResource('/categories', CategoryController::class);
-});
 
+    /* Brand routes */
+    Route::get('/all-brands', [BrandController::class, 'allBrands']);
+    Route::get('/brands/status/{id}', [BrandController::class, 'status']);
+    Route::apiResource('/brands', BrandController::class);
+
+
+});

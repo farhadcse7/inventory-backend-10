@@ -5,33 +5,33 @@ namespace App\Http\Controllers\Api;
 use App\Trait\ApiResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryResource;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
-use App\Repositories\Category\CategoryInterface;
+use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Resources\BrandResource;
+use App\Repositories\Brand\BrandInterface;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     use ApiResponse;
 
-    private $categoryRepository;
+    private $brandRepository;
 
-    public function __construct(CategoryInterface $categoryRepository)
+    public function __construct(BrandInterface $brandRepository)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->brandRepository = $brandRepository;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function allCategories()
+    public function allBrands()
     {
-        $data = $this->categoryRepository->all();
+        $data = $this->brandRepository->all();
         $metadata['count'] = count($data);
         if(!$data){
             return $this->ResponseError([], null, 'No Data Found!', 200, 'error');
         }
-        return $this->ResponseSuccess(CategoryResource::collection($data), $metadata);
+        return $this->ResponseSuccess(BrandResource::collection($data), $metadata);
     }
 
     /**
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function index()
     {
         $perPage = request('per_page');
-        $data = $this->categoryRepository->allPaginate($perPage);
+        $data = $this->brandRepository->allPaginate($perPage);
         $metadata['count'] = count($data);
         if(!$data){
             return $this->ResponseError([], null, 'No Data Found!', 200, 'error');
@@ -51,11 +51,11 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreBrandRequest $request)
     {
         try {
-            $data = $this->categoryRepository->store($request);
-            return $this->ResponseSuccess(new CategoryResource($data), null, 'Data Stored Successfully!', 201);
+            $data = $this->brandRepository->store($request);
+            return $this->ResponseSuccess(new BrandResource($data), null, 'Data Stored Successfully!', 201);
         } catch (\Exception $e) {
            return $this->ResponseError($e->getMessage());
         }
@@ -66,21 +66,21 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $data = $this->categoryRepository->show($id);
+        $data = $this->brandRepository->show($id);
         if(!$data){
             return $this->ResponseError([], null, 'No Data Found!', 200, 'error');
         }
-        return $this->ResponseSuccess(new CategoryResource($data));
+        return $this->ResponseSuccess(new BrandResource($data));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, string $id)
+    public function update(UpdateBrandRequest $request, string $id)
     {
         try {
-            $data = $this->categoryRepository->update($request, $id);
-            return $this->ResponseSuccess(new CategoryResource($data), null, 'Data Updated Successfully!', 200);
+            $data = $this->brandRepository->update($request, $id);
+            return $this->ResponseSuccess(new BrandResource($data), null, 'Data Updated Successfully!', 200);
         } catch (\Exception $e) {
            return $this->ResponseError($e->getMessage());
         }
@@ -92,7 +92,7 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         try {
-            $data = $this->categoryRepository->delete($id);
+            $data = $this->brandRepository->delete($id);
             return $this->ResponseSuccess($data, null, 'Data Deleted Successfully!', 204);
         } catch (\Exception $e) {
            return $this->ResponseError($e->getMessage());
@@ -104,7 +104,7 @@ class CategoryController extends Controller
     public function status(string $id)
     {
         try {
-            $data = $this->categoryRepository->status($id);
+            $data = $this->brandRepository->status($id);
             return $this->ResponseSuccess($data, null, 'Data Updated Successfully!', 204);
         } catch (\Exception $e) {
            return $this->ResponseError($e->getMessage());
